@@ -15,7 +15,7 @@ local dict = "anim@mp_player_intmenu@key_fob@"
 Config = {}
 --================ end variables
 --================ begin config
-Config.disableNPC = true
+Config.disableNPC = false -- compatibilidad con lockpick
 --================ end config
 --[[
 Citizen.CreateThread(function()
@@ -50,9 +50,10 @@ end)
 
 function lock()
 	local player = GetPlayerPed(-1)
-    local vehicle = GetVehiclePedIsIn(player,true)
+	--local vehicle = GetVehiclePedIsIn(player,true) --current vehicle
+	local vehicle = GetVehiclePedIsIn(player, false) --current vehicle
 	local vehicleplate = GetVehicleNumberPlateText(vehicle)
-	local lastvehicle= GetVehiclePedIsIn (player, true)
+	local lastvehicle= GetVehiclePedIsIn (player, true) --last vehicle
 	local islocked = GetVehicleDoorLockStatus(vehicle)
 	
 	
